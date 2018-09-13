@@ -1,9 +1,9 @@
 const express = require('express');
 const next = require('next');
 
+require('dotenv').config()
 
-
-const port = parseInt('3000', 10);
+const port = parseInt(process.env.PORT, 10);
 const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
@@ -21,5 +21,6 @@ app.prepare()
         });
         server.listen(port, (err) => {
             if (err) throw err
-        })
+            console.log(`> port:${process.env.PORT}`)
+        });
     });
